@@ -124,6 +124,55 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
 .tile .stats { width: 300px; position: relative; }
 .tile .tag-ex, .stats .tag-ex { font-size: 10.5px; color: var(--faint); margin-left: auto; align-self: start; }
 
+/* ── Scènes animées des fonctionnalités ── */
+.m-stack, .m-sum, .m-flip { text-align: left; }
+.m-stack { position: relative; width: min(290px, 88%); }
+.m-back { position: absolute; left: 7%; right: 7%; height: 100%; border-radius: 14px; background: var(--card); box-shadow: 0 8px 22px rgba(95,45,50,.06); }
+.m-back.one { top: -14px; left: 4%; right: 4%; opacity: .75; }
+.m-back.two { top: -27px; opacity: .42; }
+.m-offer { position: relative; display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 14px; background: var(--card); box-shadow: var(--shadow); }
+.m-offer img { width: 52px; height: 52px; border-radius: 11px; object-fit: cover; }
+.m-offer-txt { min-width: 0; flex: 1; }
+.m-offer-txt b { display: block; font-size: 14.5px; font-weight: 600; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.m-prices { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.m-old { position: relative; color: var(--faint); }
+.m-old i { position: absolute; left: -2px; right: -2px; top: 52%; height: 1.5px; background: var(--coral); transform-origin: left; }
+.m-prices strong { font-weight: 600; color: var(--ink); }
+#m-map .phone { top: 14px; }
+.m-route { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+.m-route path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+#mm-glow { stroke: #fff; stroke-width: 7; }
+#mm-line { stroke: var(--ink); stroke-width: 3.5; }
+#mm-ping { fill: none; stroke: var(--coral); stroke-width: 2; transform-box: fill-box; transform-origin: center; }
+#mm-chip { right: 6%; top: 62px; }
+.m-flip { width: min(252px, 80%); aspect-ratio: 1.62; perspective: 900px; }
+.m-faces { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
+.m-face { position: absolute; inset: 0; border-radius: 16px; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 16px 30px rgba(170,70,80,.22); }
+.m-front { color: #fff; padding: 15px 16px; display: grid; align-content: space-between; background: radial-gradient(90% 120% at 15% 60%, #F7B58F 0%, rgba(247,181,143,0) 70%), linear-gradient(120deg, #FBA577 0%, #F27F6B 55%, #D5487F 100%); }
+.m-front img { height: 15px; width: auto; }
+.m-front small { display: block; font-size: 9.5px; opacity: .85; }
+.m-front b { font-size: 21px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.m-front > span { display: flex; justify-content: space-between; font-size: 9.5px; font-weight: 600; letter-spacing: .04em; }
+.m-front em { font-style: normal; opacity: .85; }
+.m-rear { background: var(--card); transform: rotateY(180deg); display: flex; align-items: center; gap: 14px; padding: 12px; }
+.m-qr { position: relative; height: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 8px; }
+.m-qr img { display: block; width: 100%; height: 100%; }
+.m-qr i { position: absolute; left: 0; right: 0; top: 0; height: 2.5px; background: var(--coral); box-shadow: 0 0 10px 2px rgba(255,122,107,.7); }
+.m-timer { flex: 1; min-width: 0; display: grid; gap: 3px; }
+.m-timer small { font-size: 9.5px; color: var(--faint); line-height: 1.25; }
+.m-timer b { font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.m-timer span { display: block; height: 3px; border-radius: 3px; background: var(--tile); overflow: hidden; }
+.m-timer i { display: block; height: 100%; background: var(--coral); transform-origin: left; }
+.m-tap { position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px; border-radius: 50%; background: rgba(23,21,26,.16); border: 1.5px solid rgba(255,255,255,.9); opacity: 0; }
+.tile .m-done { left: 50%; right: auto; bottom: 12px; top: auto; display: flex; align-items: center; gap: 7px; white-space: nowrap; opacity: 0; }
+.m-sum { width: min(292px, 88%); background: var(--card); border-radius: 14px; padding: 14px 16px 12px; box-shadow: 0 12px 30px rgba(95,45,50,.09); }
+.m-sum small { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--soft); }
+.m-sum b { display: block; font-size: 30px; font-weight: 500; letter-spacing: -.03em; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.m-bars { display: flex; align-items: flex-end; gap: 6px; height: 74px; margin-top: 8px; }
+.m-bars i { flex: 1; height: var(--h); border-radius: 4px; background: #F6DCD2; transform-origin: bottom; }
+.m-bars i.on { background: var(--coral); }
+.tile .m-plus { right: 5%; top: 18px; color: #1FA35B; font-weight: 600; opacity: 0; }
+
 /* ── Étapes ── */
 .steps { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 32px; }
 .steps-intro { position: sticky; top: calc(28px + env(safe-area-inset-top, 0px)); align-self: start; display: grid; gap: 10px; }
@@ -250,13 +299,15 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
     </div>
     <div class="tiles">
       <article class="tile">
-        <div class="tile-art">
-          <div class="pile">
-            <span class="ghost a"></span><span class="ghost b"></span>
-            <div class="float offer">
-              <img src="img/cafe.jpg" alt="">
-              <p><b>Latte + cookie</b><span>4,90 €<s>6,80 €</s></span></p>
-              <span class="save">−1,90 €</span>
+        <div class="tile-art" id="m-price">
+          <div class="m-stack"><span class="m-back two"></span><span class="m-back one"></span>
+            <div class="m-offer">
+              <img id="mp-img" src="img/burger.jpg" alt="">
+              <div class="m-offer-txt">
+                <b id="mp-name">Menu Smash</b>
+                <span class="m-prices"><span class="m-old"><span id="mp-old">13,90 €</span><i id="mp-strike"></i></span><strong id="mp-new">9,90 €</strong></span>
+              </div>
+              <span class="save" id="mp-save">−4,00 €</span>
             </div>
           </div>
         </div>
@@ -264,35 +315,46 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
       </article>
 
       <article class="tile">
-        <div class="tile-art">
-          <div class="phone"><div class="screen"><img src="img/plan.jpg" alt="Plan des commerces autour du campus" loading="lazy"></div></div>
-          <div class="float mini bob"><small>Depuis le campus</small>3 min à pied</div>
+        <div class="tile-art" id="m-map">
+          <div class="phone"><div class="screen"><img src="img/plan.jpg" alt="Plan des commerces autour du campus" loading="lazy">
+            <svg class="m-route" viewBox="0 0 200 439" aria-hidden="true">
+              <path id="mm-glow" d="M100 208 L113 176 L92 138 L85 106" />
+              <path id="mm-line" d="M100 208 L113 176 L92 138 L85 106" />
+              <circle id="mm-ping" cx="85" cy="104" r="7" />
+            </svg>
+          </div></div>
+          <div class="float mini" id="mm-chip"><small>Depuis le campus</small>3 min à pied</div>
         </div>
         <div class="tile-copy"><h3>Le plan du quartier</h3><p>Repère les commerces autour de toi, avec leurs prix et leurs horaires.</p></div>
       </article>
 
       <article class="tile">
-        <div class="tile-art">
-          <div class="phone"><div class="screen"><img src="img/carte.jpg" alt="Carte étudiante Nowgrab dans l’app" loading="lazy"></div></div>
-          <div class="float mini bob late"><small>QR code</small>Nouveau toutes les 30 s</div>
+        <div class="tile-art" id="m-card">
+          <div class="m-flip"><div class="m-faces" id="mc-faces">
+            <div class="m-face m-front">
+              <img src="img/nowgrab-wordmark-white.png" alt="Nowgrab">
+              <p><small>Économisé ce mois-ci</small><b>19,60 €</b></p>
+              <span>CAMILLE DUPONT<em>MiM 1 · ESCP</em></span>
+            </div>
+            <div class="m-face m-rear">
+              <div class="m-qr"><img src="img/qr.png" alt="QR code de la carte Nowgrab" loading="lazy"><i id="mc-scan"></i></div>
+              <div class="m-timer"><small>Renouvelé dans</small><b id="mc-sec">30 s</b><span><i id="mc-bar"></i></span></div>
+            </div>
+          </div></div>
+          <span class="m-tap" id="mc-tap"></span>
+          <div class="float mini m-done" id="mc-done"><span class="check">✓</span>Remise appliquée</div>
         </div>
-        <div class="tile-copy"><h3>Ta carte étudiante</h3><p>Choisis sa couleur. Elle ne peut être ni copiée ni prêtée.</p></div>
+        <div class="tile-copy"><h3>Ta carte étudiante</h3><p>Choisis sa couleur. Son QR change toutes les 30 secondes : elle ne peut être ni copiée ni prêtée.</p></div>
       </article>
 
       <article class="tile">
-        <div class="tile-art">
-          <div class="float stats">
-            <div class="stats-head">
-              <i><img src="img/nowgrab-flower.png" alt=""></i>
-              <p><small>Depuis le début</small><b>Ton activité</b></p>
-              <span class="tag-ex">Exemple</span>
-            </div>
-            <div class="stat-row">
-              <div><small>Économisé</small><b>34,90 €</b></div>
-              <div><small>Offres</small><b>13</b></div>
-              <div><small>Favoris</small><b>3</b></div>
-            </div>
+        <div class="tile-art" id="m-stats">
+          <div class="m-sum">
+            <small>Économisé ce mois-ci <span class="tag-ex">Exemple</span></small>
+            <b id="ms-total">19,60 €</b>
+            <div class="m-bars" id="ms-bars"><i style="--h:22%"></i><i style="--h:34%"></i><i style="--h:28%"></i><i style="--h:48%"></i><i style="--h:42%"></i><i style="--h:60%"></i><i style="--h:56%"></i><i style="--h:74%"></i><i style="--h:68%"></i><i style="--h:88%"></i><i class="on" style="--h:100%"></i></div>
           </div>
+          <div class="float mini m-plus" id="ms-plus"><small>Burger Club</small>+4,00 €</div>
         </div>
         <div class="tile-copy"><h3>Tes économies en direct</h3><p>Suis ce que Nowgrab te fait économiser, mois après mois.</p></div>
       </article>
@@ -381,3 +443,83 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
     <p>© 2026 Nowgrab</p>
   </div>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+/* Une boucle par fonctionnalité, jouée seulement quand sa tuile est visible. Sans animation, la page reste complète. */
+(function () {
+  if (!window.gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var $ = function (id) { return document.getElementById(id); };
+  var eur = function (n) { return n.toFixed(2).replace('.', ',') + ' €'; };
+  var OFFERS = [
+    { img: 'img/burger.jpg', name: 'Menu Smash', old: '13,90 €', now: '9,90 €', save: '−4,00 €' },
+    { img: 'img/cafe.jpg', name: 'Latte + cookie', old: '6,80 €', now: '4,90 €', save: '−1,90 €' },
+    { img: 'img/healthy.jpg', name: 'Poké saumon', old: '13,50 €', now: '10,50 €', save: '−3,00 €' }
+  ];
+  var i = 0;
+  function fill() {
+    var o = OFFERS[i++ % OFFERS.length];
+    $('mp-img').src = o.img; $('mp-name').textContent = o.name; $('mp-old').textContent = o.old;
+    $('mp-new').textContent = o.now; $('mp-save').textContent = o.save;
+  }
+
+  var price = gsap.timeline({ repeat: -1, paused: true, onRepeat: fill })
+    .set('#mp-strike', { scaleX: 0 }).set('#mp-new', { opacity: 0, x: -8 }).set('#mp-save', { opacity: 0, scale: .5 })
+    .fromTo('.m-offer', { y: 34, opacity: 0, scale: .97 }, { y: 0, opacity: 1, scale: 1, duration: .8, ease: 'expo.out' })
+    .to('#mp-strike', { scaleX: 1, duration: .45, ease: 'power2.inOut' }, '+=.45')
+    .to('#mp-new', { opacity: 1, x: 0, duration: .4, ease: 'power3.out' }, '-=.08')
+    .to('#mp-save', { opacity: 1, scale: 1, duration: .55, ease: 'back.out(2.4)' }, '-=.15')
+    .to('.m-offer', { y: -34, opacity: 0, scale: .96, duration: .55, ease: 'power3.in' }, '+=1.9');
+
+  var line = $('mm-line'), len = line.getTotalLength();
+  var map = gsap.timeline({ repeat: -1, paused: true })
+    .set(['#mm-line', '#mm-glow'], { strokeDasharray: len, strokeDashoffset: len, opacity: 1 })
+    .set('#mm-ping', { opacity: 0, scale: .4 }).set('#mm-chip', { opacity: 0, y: 12 })
+    .to(['#mm-line', '#mm-glow'], { strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut' }, .6)
+    .to('#mm-ping', { opacity: 1, scale: 1, duration: .25 }, '-=.1')
+    .to('#mm-ping', { scale: 2.6, opacity: 0, duration: .9, ease: 'power2.out' })
+    .to('#mm-chip', { opacity: 1, y: 0, duration: .6, ease: 'expo.out' }, '-=.85')
+    .to(['#mm-line', '#mm-glow', '#mm-chip'], { opacity: 0, duration: .45 }, '+=2');
+
+  var clock = { s: 30 };
+  var card = gsap.timeline({ repeat: -1, paused: true })
+    .set('#mc-faces', { rotationY: 0 }).set('#mc-scan', { y: 0, opacity: 0 }).set('#mc-bar', { scaleX: 1 })
+    .set('#mc-done', { opacity: 0, y: 10, xPercent: -50 }).set('#mc-tap', { opacity: 0, scale: .6 })
+    .call(function () { clock.s = 30; $('mc-sec').textContent = '30 s'; })
+    .fromTo('.m-flip', { y: 18, rotation: -3, opacity: 0 }, { y: -8, rotation: 0, opacity: 1, duration: .8, ease: 'expo.out' })
+    .to('#mc-tap', { opacity: 1, scale: 1, duration: .2 }, '+=.5')
+    .to('#mc-tap', { opacity: 0, scale: 1.7, duration: .4, ease: 'power2.out' })
+    .to('#mc-faces', { rotationY: 180, duration: .85, ease: 'power3.inOut' }, '-=.35')
+    .to(clock, { s: 26, duration: 2.6, ease: 'none', onUpdate: function () { $('mc-sec').textContent = Math.ceil(clock.s) + ' s'; } }, '-=.1')
+    .to('#mc-bar', { scaleX: 26 / 30, duration: 2.6, ease: 'none' }, '<')
+    .to('#mc-scan', { opacity: 1, duration: .1 }, '<.25')
+    .to('#mc-scan', { y: 92, duration: .7, ease: 'sine.inOut', repeat: 1, yoyo: true }, '<')
+    .to('#mc-scan', { opacity: 0, duration: .1 })
+    .to('#mc-done', { opacity: 1, y: 0, duration: .55, ease: 'back.out(2)' }, '-=.2')
+    .to('#mc-faces', { rotationY: 360, duration: .85, ease: 'power3.inOut' }, '+=.9')
+    .to('#mc-done', { opacity: 0, duration: .3 }, '<')
+    .to('.m-flip', { y: -18, opacity: 0, duration: .45, ease: 'power3.in' }, '+=.3');
+
+  var sum = { v: 0 }, bars = gsap.utils.toArray('#ms-bars i');
+  var paint = function () { $('ms-total').textContent = eur(sum.v); };
+  var stats = gsap.timeline({ repeat: -1, paused: true })
+    .set(bars, { scaleY: 0 }).set('#ms-plus', { opacity: 0, y: 14 })
+    .call(function () { sum.v = 0; paint(); })
+    .fromTo('.m-sum', { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out' })
+    .to(bars, { scaleY: 1, duration: .7, ease: 'power3.out', stagger: .055 }, '-=.35')
+    .to(sum, { v: 15.6, duration: 1.2, ease: 'power2.out', onUpdate: paint }, '<')
+    .to('#ms-plus', { opacity: 1, y: 0, duration: .55, ease: 'back.out(2)' }, '+=.3')
+    .to(sum, { v: 19.6, duration: .7, ease: 'power2.out', onUpdate: paint }, '+=.25')
+    .to('#ms-plus', { opacity: 0, y: -12, duration: .4, ease: 'power2.in' }, '+=.7')
+    .to('.m-sum', { y: -18, opacity: 0, duration: .45, ease: 'power3.in' }, '+=1.5');
+
+  var scenes = [['m-price', price], ['m-map', map], ['m-card', card], ['m-stats', stats]];
+  var seen = new IntersectionObserver(function (items) {
+    items.forEach(function (e) {
+      var tl = scenes.filter(function (s) { return s[0] === e.target.id; })[0][1];
+      e.isIntersecting ? tl.play() : tl.pause();
+    });
+  }, { threshold: .35 });
+  scenes.forEach(function (s) { seen.observe($(s[0])); });
+})();
+</script>
