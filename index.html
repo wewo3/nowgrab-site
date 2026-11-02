@@ -482,7 +482,7 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
-/* Une boucle par fonctionnalité, jouée seulement quand sa tuile est visible. Sans animation, la page reste complète. */
+/* Une boucle par scène. Sans animation, la page reste complète. */
 (function () {
   if (!window.gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var $ = function (id) { return document.getElementById(id); };
@@ -599,12 +599,21 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
   addEventListener('scroll', follow, { passive: true }); addEventListener('resize', follow); follow();
 
   var scenes = [['m-price', price], ['m-map', map], ['m-card', card], ['m-stats', stats], ['m-get', get], ['m-form', form], ['m-flow', flow]];
-  var seen = new IntersectionObserver(function (items) {
-    items.forEach(function (e) {
-      var tl = scenes.filter(function (s) { return s[0] === e.target.id; })[0][1];
-      e.isIntersecting ? tl.play() : tl.pause();
-    });
-  }, { threshold: .35 });
-  scenes.forEach(function (s) { seen.observe($(s[0])); });
+  // Ordinateur : la scène se joue au survol et reste sur son image complète le reste du temps.
+  // Téléphone et tablette : elle se joue toute seule dès qu'elle est visible.
+  var hover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  scenes.forEach(function (s) {
+    var box = $(s[0]), tl = s[1], rest = tl.duration() - .6;
+    if (hover) {
+      var host = box.parentNode;
+      tl.seek(rest, false);
+      host.addEventListener('mouseenter', function () { tl.restart(); });
+      host.addEventListener('mouseleave', function () { tl.pause(); tl.seek(rest, false); });
+    } else {
+      new IntersectionObserver(function (items) {
+        items[0].isIntersecting ? tl.play() : tl.pause();
+      }, { threshold: .35 }).observe(box);
+    }
+  });
 })();
 </script>
