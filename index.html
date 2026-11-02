@@ -173,6 +173,33 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
 .m-bars i.on { background: var(--coral); }
 .tile .m-plus { right: 5%; top: 18px; color: #1FA35B; font-weight: 600; opacity: 0; }
 
+.t-fill { position: absolute; left: 13px; top: 8px; bottom: 40px; width: 1.5px; margin-left: -.5px; background: var(--coral); transform: scaleY(0); transform-origin: top; }
+.dot { transition: background .3s; }
+.dot.on { background: var(--coral); }
+.m-store { width: min(310px, 90%); display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); text-align: left; }
+.m-store > img { width: 54px; height: 54px; border-radius: 13px; }
+.m-store p { flex: 1; min-width: 0; }
+.m-store b { display: block; font-size: 15px; font-weight: 600; line-height: 1.3; }
+.m-store small { font-size: 12px; color: var(--soft); }
+.m-btn { position: relative; flex: none; width: 74px; height: 32px; border-radius: 999px; background: #F1EFEF; display: grid; place-items: center; font-size: 13px; font-weight: 600; color: #0A7CFF; overflow: hidden; }
+.m-btn svg { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px; opacity: 0; transform: rotate(-90deg); }
+.m-btn circle { fill: none; stroke-width: 3; }
+.m-btn .bg { stroke: #DDD9DA; }
+.m-btn .fg { stroke: #0A7CFF; stroke-linecap: round; }
+#m-get { align-content: center; gap: 12px; }
+.m-note { font-size: 11.5px; color: var(--soft); }
+.m-panel { width: min(290px, 88%); padding: 14px; border-radius: 14px; background: var(--card); box-shadow: 0 12px 30px rgba(95,45,50,.09); display: grid; gap: 6px; text-align: left; }
+.m-panel > small { font-size: 11px; color: var(--soft); }
+.m-field { display: flex; align-items: center; height: 36px; padding-inline: 10px; margin-bottom: 4px; border-radius: 9px; background: #F7F4F1; font-size: 12.5px; white-space: nowrap; overflow: hidden; }
+.m-field i { width: 1.5px; height: 16px; margin-left: 1px; background: var(--coral); opacity: 0; }
+.m-code { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+.m-code i { height: 36px; border-radius: 8px; background: #F7F4F1; display: grid; place-items: center; font-style: normal; font-size: 15px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.m-ok { display: flex; align-items: center; gap: 8px; padding-top: 6px; font-size: 12.5px; font-weight: 500; }
+.m-rows { gap: 2px; }
+.m-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; font-size: 13.5px; }
+.m-row + .m-row { border-top: 1px solid #F3EEEA; }
+.m-row b { margin-left: auto; color: #D9532B; font-weight: 600; }
+
 /* ── Étapes ── */
 .steps { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 32px; }
 .steps-intro { position: sticky; top: calc(28px + env(safe-area-inset-top, 0px)); align-self: start; display: grid; gap: 10px; }
@@ -368,13 +395,20 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
         <p class="sub">Aucun abonnement, aucune carte bancaire. Il te faut juste ton adresse ESCP.</p>
       </div>
       <ol class="timeline" style="list-style:none;margin:0">
+        <li class="t-fill" id="t-fill" aria-hidden="true"></li>
         <li class="step-wrap">
           <span class="dot">1</span>
           <div class="step">
-            <div class="tile-art">
-              <div class="phone" style="position:absolute;top:28px;left:50%;transform:translateX(-50%);width:212px;border-radius:34px;padding:6px"><div class="screen" style="border-radius:29px"><img src="img/activite.jpg" alt="Écran Activité de l’app Nowgrab" loading="lazy"></div></div>
-              <span class="pill a">App Store</span>
-              <span class="pill b">Gratuit</span>
+            <div class="tile-art" id="m-get">
+              <div class="m-store">
+                <img src="img/logo.png" alt="">
+                <p><b>Nowgrab</b><small>Bons plans étudiants</small></p>
+                <div class="m-btn" id="mg-btn">
+                  <span id="mg-label">Ouvrir</span>
+                  <svg viewBox="0 0 34 34" aria-hidden="true"><circle class="bg" cx="17" cy="17" r="14"/><circle class="fg" id="mg-ring" cx="17" cy="17" r="14"/></svg>
+                </div>
+              </div>
+              <small class="m-note" id="mg-note">Gratuit sur l’App Store</small>
             </div>
             <div class="step-copy"><h3>Télécharge l’app</h3><p>Nowgrab est disponible gratuitement sur l’App Store.</p></div>
           </div>
@@ -382,11 +416,13 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
         <li class="step-wrap">
           <span class="dot">2</span>
           <div class="step">
-            <div class="tile-art">
-              <div class="profile">
-                <div class="who"><i>C</i><p><b>Camille Dupont</b><span>camille.dupont@edu.escp.eu</span></p></div>
-                <div class="line-item"><span class="check">✓</span>Adresse ESCP vérifiée</div>
-                <div class="line-item"><span class="check">✓</span>Code reçu par email</div>
+            <div class="tile-art" id="m-form">
+              <div class="m-panel">
+                <small>Email ESCP</small>
+                <div class="m-field"><span id="mf-email">camille.dupont@edu.escp.eu</span><i id="mf-caret"></i></div>
+                <small>Code reçu par email</small>
+                <div class="m-code" id="mf-code"><i>4</i><i>8</i><i>2</i><i>9</i><i>1</i><i>6</i></div>
+                <div class="m-ok" id="mf-ok"><span class="check">✓</span>Adresse ESCP vérifiée</div>
               </div>
             </div>
             <div class="step-copy"><h3>Crée ton compte</h3><p>Le compte est réservé aux adresses ESCP et se vérifie par email.</p></div>
@@ -395,12 +431,12 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
         <li class="step-wrap">
           <span class="dot">3</span>
           <div class="step">
-            <div class="tile-art">
-              <div class="profile todo">
-                <small>À LA CAISSE</small>
-                <div class="line-item"><span class="check">✓</span>Choisis ton offre</div>
-                <div class="line-item"><span class="check off"></span>Montre ton QR code</div>
-                <div class="line-item"><span class="check off"></span>La remise s’applique</div>
+            <div class="tile-art" id="m-flow">
+              <div class="m-panel m-rows">
+                <small>À la caisse</small>
+                <div class="m-row"><span class="check">✓</span>Choisis ton offre</div>
+                <div class="m-row"><span class="check">✓</span>Montre ton QR code</div>
+                <div class="m-row"><span class="check">✓</span>La remise s’applique<b>−4,00 €</b></div>
               </div>
             </div>
             <div class="step-copy"><h3>Profite de ta remise</h3><p>Le commerçant scanne ton QR avant que tu paies, et c’est tout.</p></div>
@@ -471,7 +507,7 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
     .to('#mp-save', { opacity: 1, scale: 1, duration: .55, ease: 'back.out(2.4)' }, '-=.15')
     .to('.m-offer', { y: -34, opacity: 0, scale: .96, duration: .55, ease: 'power3.in' }, '+=1.9');
 
-  var line = $('mm-line'), len = line.getTotalLength();
+  var route = $('mm-line'), len = route.getTotalLength();
   var map = gsap.timeline({ repeat: -1, paused: true })
     .set(['#mm-line', '#mm-glow'], { strokeDasharray: len, strokeDashoffset: len, opacity: 1 })
     .set('#mm-ping', { opacity: 0, scale: .4 }).set('#mm-chip', { opacity: 0, y: 12 })
@@ -513,7 +549,56 @@ h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.14; }
     .to('#ms-plus', { opacity: 0, y: -12, duration: .4, ease: 'power2.in' }, '+=.7')
     .to('.m-sum', { y: -18, opacity: 0, duration: .45, ease: 'power3.in' }, '+=1.5');
 
-  var scenes = [['m-price', price], ['m-map', map], ['m-card', card], ['m-stats', stats]];
+  var C = 2 * Math.PI * 14;
+  var get = gsap.timeline({ repeat: -1, paused: true })
+    .set('#mg-btn', { width: 74, backgroundColor: '#F1EFEF' }).set('#mg-ring', { strokeDasharray: C, strokeDashoffset: C }).set('#m-get svg', { opacity: 0 })
+    .set('#mg-label', { opacity: 1 }).set('#mg-note', { opacity: 0 })
+    .call(function () { $('mg-label').textContent = 'Obtenir'; })
+    .fromTo('.m-store', { y: 24, opacity: 0, scale: .97 }, { y: 0, opacity: 1, scale: 1, duration: .75, ease: 'expo.out' })
+    .to('#mg-btn', { scale: .92, duration: .12, ease: 'power2.out' }, '+=.5').to('#mg-btn', { scale: 1, duration: .25, ease: 'power2.out' })
+    .to('#mg-label', { opacity: 0, duration: .15 }, '<')
+    .to('#mg-btn', { width: 32, backgroundColor: 'rgba(241,239,239,0)', duration: .4, ease: 'power3.inOut' }, '<')
+    .to('#m-get svg', { opacity: 1, duration: .2 }, '-=.1')
+    .to('#mg-ring', { strokeDashoffset: 0, duration: 1.4, ease: 'power1.inOut' })
+    .to('#m-get svg', { opacity: 0, duration: .15 })
+    .call(function () { $('mg-label').textContent = 'Ouvrir'; })
+    .to('#mg-btn', { width: 74, backgroundColor: '#F1EFEF', duration: .45, ease: 'back.out(1.6)' })
+    .to('#mg-label', { opacity: 1, duration: .2 }, '-=.25')
+    .to('#mg-note', { opacity: 1, duration: .4 }, '<')
+    .to(['.m-store', '#mg-note'], { y: -18, opacity: 0, duration: .45, ease: 'power3.in' }, '+=1.8');
+
+  var mail = 'camille.dupont@edu.escp.eu', typed = { n: 0 }, digits = gsap.utils.toArray('#mf-code i');
+  var type = function () { $('mf-email').textContent = mail.slice(0, Math.round(typed.n)); };
+  var form = gsap.timeline({ repeat: -1, paused: true })
+    .set(digits, { color: 'rgba(23,21,26,0)', scale: 1 }).set('#mf-ok', { opacity: 0, y: 8 }).set('#mf-caret', { opacity: 1 })
+    .call(function () { typed.n = 0; type(); })
+    .fromTo('#m-form .m-panel', { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out' })
+    .to(typed, { n: mail.length, duration: 1.5, ease: 'none', onUpdate: type }, '+=.2')
+    .to('#mf-caret', { opacity: 0, duration: .1 }, '+=.25')
+    .to(digits, { color: 'rgba(23,21,26,1)', duration: .12, stagger: .13 }, '+=.2')
+    .fromTo(digits, { scale: .8 }, { scale: 1, duration: .35, ease: 'back.out(3)', stagger: .13 }, '<')
+    .to('#mf-ok', { opacity: 1, y: 0, duration: .55, ease: 'back.out(2)' }, '+=.1')
+    .to('#m-form .m-panel', { y: -18, opacity: 0, duration: .45, ease: 'power3.in' }, '+=1.8');
+
+  var rows = gsap.utils.toArray('.m-row'), ticks = gsap.utils.toArray('.m-row .check');
+  var flow = gsap.timeline({ repeat: -1, paused: true })
+    .set(rows, { opacity: .32 }).set(ticks, { scale: 0 }).set('.m-row b', { opacity: 0, scale: .5 })
+    .fromTo('#m-flow .m-panel', { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out' });
+  rows.forEach(function (r, k) {
+    flow.to(r, { opacity: 1, duration: .3 }, '+=.45').to(ticks[k], { scale: 1, duration: .45, ease: 'back.out(3)' }, '<');
+  });
+  flow.to('.m-row b', { opacity: 1, scale: 1, duration: .5, ease: 'back.out(2.4)' }, '-=.1')
+    .to('#m-flow .m-panel', { y: -18, opacity: 0, duration: .45, ease: 'power3.in' }, '+=2');
+
+  var line = document.querySelector('.timeline'), bar = $('t-fill'), dots = gsap.utils.toArray('.dot');
+  function follow() {
+    var r = line.getBoundingClientRect(), mid = innerHeight * .6;
+    gsap.set(bar, { scaleY: gsap.utils.clamp(0, 1, (mid - r.top) / (r.height - 40)) });
+    dots.forEach(function (d) { d.classList.toggle('on', d.getBoundingClientRect().top < mid); });
+  }
+  addEventListener('scroll', follow, { passive: true }); addEventListener('resize', follow); follow();
+
+  var scenes = [['m-price', price], ['m-map', map], ['m-card', card], ['m-stats', stats], ['m-get', get], ['m-form', form], ['m-flow', flow]];
   var seen = new IntersectionObserver(function (items) {
     items.forEach(function (e) {
       var tl = scenes.filter(function (s) { return s[0] === e.target.id; })[0][1];
